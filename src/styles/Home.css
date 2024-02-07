@@ -1,0 +1,36 @@
+.home{
+
+height: 100vh;
+
+}
+
+.header{
+   display: block;
+    grid-area: hd;
+    width: 100vw;
+}
+
+.userContent{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.favorites{
+    display: inline;
+    width: 40%;
+    grid-area: fv;
+}
+
+.recently-viewed{
+   display: inline;
+   width: 60%;
+    grid-area: rv;
+}
+
+.footer{
+    
+    grid-area: ft;
+}

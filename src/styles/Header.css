@@ -1,0 +1,9 @@
+div {
+    display: inline;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    overflow: scroll;
+}
+img {
+    max-height: 15vh;
+}
