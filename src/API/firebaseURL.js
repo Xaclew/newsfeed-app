@@ -1,1 +1,1 @@
-export const firebaseUrl = `https://newsfeedapp-c375d-default-rtdb.firebaseio.com/`;
+export const firebaseUrl = `https://newsfeed2-9b156-default-rtdb.firebaseio.com/`;
