@@ -1,0 +1,1 @@
+export const firebaseUrl = `https://newsfeedapp-c375d-default-rtdb.firebaseio.com/`;

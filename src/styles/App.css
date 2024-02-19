@@ -36,3 +36,61 @@
     transform: rotate(360deg);
   }
 }
+
+
+CSS
+.news-feed {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.top-news-carousel {
+  display: flex;
+  /* Remove overflow-y */
+  height: 20%;
+  /* Additional styling for spacing and appearance */
+}
+
+.carousel-container {
+  /* Allow content to fit horizontally */
+  flex: 1;
+  display: flex;
+  /* Remove overflow-y */
+  /* Additional styling for spacing and appearance */
+}
+
+.content-container {
+  display: flex;
+  flex-grow: 1; /* Take up remaining space */
+  overflow-y: scroll; /* Enable vertical scrolling for the content container */
+}
+
+.recently-viewed,
+.favorites {
+  flex: 1; /* Split equally */
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  /* Additional styling for each list */
+}
+
+.article-card {
+  /* Fixed dimensions for uniform size */
+  width: 200px;
+  height: 300px;
+  margin: 10px;
+  border: 1px solid #ddd;
+  /* Additional styling for appearance */
+}
+
+.article-card img {
+  /* Ensure image fills the card space */
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Maintain aspect ratio and crop if necessary */
+}
+
+
+
+
+
