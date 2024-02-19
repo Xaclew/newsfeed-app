@@ -1,43 +1,57 @@
 import React, { useState, useEffect } from 'react';
 import ArticleCard from './ArticleCard';
 
+const BASE_API_URL = 'https://api.nytimes.com/svc/search/v2/articlesearch.json'; // Base URL
+
 function NewsFeed() {
+  const [searchTerm, setSearchTerm] = useState(''); // State for search term
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [keywords, setKeywords] = useState('tennis'); // Initial search keywords
 
   useEffect(() => {
-    setIsLoading(true);
-    setError(null);
+    // Fetch initial news (e.g., top news)
+    const fetchInitialNews = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch(`${BASE_API_URL}?q=top-stories&api-key=dYPWJfcUGz7jzoqT3m4NJ73IJiZd36RQ`); // Replace YOUR_API_KEY with your actual key
+        if (!response.ok) {
+          throw new Error('Failed to fetch news');
+        }
+        const data = await response.json();
+        setNews(data.response.docs); // Update state with fetched news articles
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-    // Simulate API response with dummy data
-    setTimeout(() => {
-      setNews([
-        {
-          id: 1,
-          title: 'Dummy Article Title 1',
-          snippet: 'This is a dummy article snippet for testing purposes.',
-          url: 'https://example.com/dummy-article-1',
-        },
-        {
-          id: 2,
-          title: 'Dummy Article Title 2',
-          snippet: 'This is another dummy article snippet for testing purposes.',
-          url: 'https://example.com/dummy-article-2',
-        },
-      ]);
-      setIsLoading(false);
-    }, 1000); // Simulate loading delay
-  }, [keywords]);
+    fetchInitialNews();
+  }, []);
 
   const handleSearch = async () => {
-    // Simulate search functionality (optional)
-    console.log('Search triggered with keywords:', keywords);
+    if (!searchTerm) {
+      return; // Prevent empty search
+    }
+
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${BASE_API_URL}?q=${searchTerm}&api-key=dYPWJfcUGz7jzoqT3m4NJ73IJiZd36RQ`); // Replace YOUR_API_KEY with your actual key
+      if (!response.ok) {
+        throw new Error('Failed to fetch search results');
+      }
+      const data = await response.json();
+      setNews(data.response.docs); // Update state with search results
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleInputChange = (event) => {
-    setKeywords(event.target.value);
+    setSearchTerm(event.target.value);
   };
 
   return (
@@ -45,7 +59,7 @@ function NewsFeed() {
       <input
         type="text"
         placeholder="Search news..."
-        value={keywords}
+        value={searchTerm}
         onChange={handleInputChange}
       />
       <button onClick={handleSearch}>Search</button>
