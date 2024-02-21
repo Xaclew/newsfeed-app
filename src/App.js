@@ -9,6 +9,7 @@ import Registration from './components/Registration';
 import Dashboard from './components/Dashboard';
 import NavigationBar from './components/NavigationBar';
 import './styles/App.css';
+import {AuthProvider} from './context/AuthContext';
 
 
 
@@ -34,6 +35,7 @@ const [theme, setTheme] = useState(availableThemes.light);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <AuthProvider>
       <BrowserRouter>
         <NavigationBar/>
         <Routes>
@@ -45,6 +47,7 @@ const [theme, setTheme] = useState(availableThemes.light);
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
+      </AuthProvider>
     </ThemeContext.Provider>
   );
 }
