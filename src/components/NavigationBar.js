@@ -1,10 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
 function NavigationBar() {
-  const { isLoggedIn, username } = useContext(AuthContext);
+  const { isLoggedIn, username, handleLogout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogoutClick = () => {
+    handleLogout();
+    navigate('/'); // Redirect to home page after logout
+  };
 
   return (
     <nav className="navigation-bar">
@@ -20,11 +26,14 @@ function NavigationBar() {
         </li>
         {isLoggedIn ? (
           <>
-            <li key="user-info">
-              Logged in as: {username}
+            <li key="profile">
+              <Link to="/profile">Profile</Link>
+            </li>
+            <li key="settings">
+              <Link to="/settings">Settings</Link>
             </li>
             <li key="logout">
-              <button onClick={() => { /* Handle logout logic */ }}>Logout</button>
+              <button onClick={handleLogoutClick}>Logout</button>
             </li>
           </>
         ) : (
@@ -42,4 +51,4 @@ function NavigationBar() {
   );
 }
 
-export default NavigationBar
+export default NavigationBar;
