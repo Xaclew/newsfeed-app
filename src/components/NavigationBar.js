@@ -4,22 +4,21 @@ import { Link } from 'react-router-dom';
 function NavigationBar() {
   return (
     <nav className="navigation-bar">
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
+      <ul >
+        <li key='home'>
+          <Link to="/" >Home</Link>
         </li>
-        <li>
-          <Link to="/about">About</Link>
+        <li key='about'>
+          <Link to="/about" >About</Link>
         </li>
-        <li>
-          <Link to="/news">News Feed</Link>
+        <li key='news-feed'>
+          <Link to="/news" >News Feed</Link>
         </li>
-        {/* Add additional links based on your app's features */}
-        <li>
-          <Link to="/login">Login</Link>
+        <li key='login'>
+          <Link to="/login" >Login</Link>
         </li>
-        <li>
-          <Link to="/register">Register</Link>
+        <li key='register'>
+          <Link to="/register" >Register</Link>
         </li>
       </ul>
     </nav>

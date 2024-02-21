@@ -4,7 +4,8 @@ import ArticleCard from './ArticleCard';
 const BASE_API_URL = 'https://api.nytimes.com/svc/search/v2/articlesearch.json'; // Base URL
 
 function NewsFeed() {
-  const [searchTerm, setSearchTerm] = useState(''); // State for search term
+
+const [searchTerm, setSearchTerm] = useState(''); // State for search term
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -22,8 +23,9 @@ function NewsFeed() {
         setNews(data.response.docs); // Update state with fetched news articles
       } catch (error) {
         setError(error.message);
-      } finally {
+      } finally {console.log(news);
         setIsLoading(false);
+        
       }
     };
 
@@ -42,6 +44,7 @@ function NewsFeed() {
         throw new Error('Failed to fetch search results');
       }
       const data = await response.json();
+      
       setNews(data.response.docs); // Update state with search results
     } catch (error) {
       setError(error.message);
@@ -71,8 +74,10 @@ function NewsFeed() {
         news.length > 0 ? (
           <div className="articles">
             {news.map((article) => (
-              <ArticleCard key={article.id} article={article} />
-            ))}
+              <ArticleCard key={article.id} article={article}/>
+              ))}
+
+
           </div>
         ) : (
           <p>No news found.</p>
@@ -81,5 +86,6 @@ function NewsFeed() {
     </div>
   );
 }
+
 
 export default NewsFeed;
