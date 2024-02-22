@@ -6,7 +6,7 @@ function ArticleCard({ article }) {
     <div className="article-card">
       <h2>{article?.title}</h2>
       <p>{article?.snippet}</p>
-      <img src={yourImage}/>
+      <img src={`http://www.nytimes.com/${article.multimedia?.[0]?.url}`} alt={article.headline.main} />
       <a href={article?.url} target="_blank" rel="noreferrer">
         Read more
       </a>

@@ -1,23 +1,21 @@
 import React, { useState } from 'react';
 
-function FilterBar({ onCategoryChange }) {
-  const [selectedCategory, setSelectedCategory] = useState('all');
+const FilterBar = ({ onFilterChange }) => {
+  const [selectedCategory, setSelectedCategory] = useState('');
 
-  const handleChange = (event) => {
+  const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
-    onCategoryChange(event.target.value); // Trigger parent function on category change
+    onFilterChange(selectedCategory);
   };
 
   return (
     <div className="filter-bar">
-      <select value={selectedCategory} onChange={handleChange}>
-        <option value="all">All Categories</option>
-        <option value="business">Business</option>
-        <option value="entertainment">Entertainment</option>
-        {/* Add more categories as needed */}
-      </select>
+        <button value="" onClick={handleCategoryChange}>All Categories</button>
+        <button value="Technology" onClick={handleCategoryChange}>Technology</button>
+        <button value="War" onClick={handleCategoryChange}>War</button>
+        <button value="Entertainment" onClick={handleCategoryChange}>Entertainment</button>
     </div>
   );
-}
+};
 
 export default FilterBar;

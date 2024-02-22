@@ -1,0 +1,40 @@
+.navigation-bar {
+    display: flex; /* Make the nav bar a flex container */
+    justify-content: space-between; /* Align items to the left and right */
+    align-items: center; /* Vertically center elements */
+    background-color: #f89454; /* Nice hue of orange */
+    padding: 10px;
+  }
+  
+  .navigation-bar ul {
+    list-style: none; /* Remove default bullet points */
+    margin: 0; /* Remove default margin */
+  }
+  
+  .navigation-bar li {
+    display: inline-block; /* Ensure elements are displayed horizontally */
+    margin-left: 15px; /* Add spacing between elements */
+  }
+  
+  .navigation-bar li a {
+    color: #fff; /* Cream font color */
+    text-decoration: none;
+    padding: 5px 10px;
+  }
+  
+  .navigation-bar li a:hover {
+    background-color: #f78547; /* Slightly darker orange on hover */
+  }
+  
+  .navigation-bar li button {
+    background-color: transparent; /* Transparent background for button */
+    border: none; /* Remove default button border */
+    color: #fff; /* Cream font color */
+    cursor: pointer;
+    padding: 5px 10px;
+  }
+  
+  .navigation-bar li button:hover {
+    background-color: #f78547; /* Same hover effect as links */
+  }
+  
