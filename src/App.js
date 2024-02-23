@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Registration from './components/Registration';
 import Dashboard from './components/Dashboard';
 import NavigationBar from './components/NavigationBar';
+import Footer from './components/Footer';
 import './styles/App.css';
 import {AuthProvider} from './context/AuthContext';
 
@@ -46,6 +47,7 @@ const [theme, setTheme] = useState(availableThemes.light);
           <Route path="/register" element={<Registration />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
+        <Footer/>
       </BrowserRouter>
       </AuthProvider>
     </ThemeContext.Provider>
