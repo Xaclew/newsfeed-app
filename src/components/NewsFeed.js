@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ArticleCard from './ArticleCard';
 import FilterBar from './FilterBar';
+import ArticleModal from './ArticleModal';
 import '../styles/NewsFeed.css';
 
 const BASE_API_URL = 'https://api.nytimes.com/svc/search/v2/articlesearch.json';
@@ -11,6 +12,9 @@ function NewsFeed() {
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [showModal, setShowModal] = useState(false); // State for modal visibility
+  const [selectedArticle, setSelectedArticle] = useState(null); // State for selected article
+
   const filterCategories = ['Technology', 'War', 'Entertainment'];
 
   useEffect(() => {
@@ -73,9 +77,19 @@ function NewsFeed() {
     handleSearch();
   };
 
+  const handleOpenModal = (article) => {
+    setSelectedArticle(article);
+    setShowModal(true); // Open the modal
+  };
+
+  const handleCloseModal = () => {
+    setSelectedArticle(null);
+    setShowModal(false); // Close the modal
+  };
+
   return (
     <div className="news-feed">
-      <div className="search-and-filter">
+            <div className="search-and-filter">
         <input
           id="searchbar"
           type="text"
@@ -103,6 +117,19 @@ function NewsFeed() {
         ) : (
           <p>No news found.</p>
         )
+      )}
+      {showModal && selectedArticle && (
+        <ArticleModal article={selectedArticle} onClose={handleCloseModal}>
+          <div className="modal-content">
+            <h2>{selectedArticle.headline.main}</h2>
+            <img src={`http://www.nytimes.com/${selectedArticle.multimedia[0].url}`} alt={selectedArticle.headline.main} />
+            <p>{selectedArticle.snippet}</p>
+            <a href={selectedArticle.url} target="_blank" rel="noreferrer">Read full article</a>
+          </div>
+          <button className="close-button" onClick={handleCloseModal}>
+            &times;
+          </button>
+        </ArticleModal>
       )}
     </div>
   );
