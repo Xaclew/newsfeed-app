@@ -15,7 +15,7 @@ function NavigationBar() {
 
   return (
     <nav className="navigation-bar">
-      <ul>
+      <ul className="navigation-links">
         <li key="home">
           <Link to="/">Home</Link>
         </li>
@@ -25,27 +25,20 @@ function NavigationBar() {
         <li key="news-feed">
           <Link to="/news">News Feed</Link>
         </li>
-        {isLoggedIn ? (
-          <>
-            <li key="profile">
-              <Link to="/profile">Profile</Link>
-            </li>
-            <li key="settings">
-              <Link to="/settings">Settings</Link>
-            </li>
-            <li key="logout">
-              <button onClick={handleLogoutClick}>Logout</button>
-            </li>
-          </>
-        ) : (
-          <>
-            <li key="login">
-              <Link to="/login">Login</Link>
-            </li>
-            <li key="register">
-              <Link to="/register">Register</Link>
-            </li>
-          </>
+        {isLoggedIn && (
+          <li key="profile">
+            <Link to="/profile">Profile</Link>
+          </li>
+        )}
+        {isLoggedIn && (
+          <li key="settings">
+            <Link to="/settings">Settings</Link>
+          </li>
+        )}
+        {isLoggedIn && (
+          <li key="logout" className="logout-button">
+            <button onClick={handleLogoutClick}>Logout</button>
+          </li>
         )}
       </ul>
     </nav>

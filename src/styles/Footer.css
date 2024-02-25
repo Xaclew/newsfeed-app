@@ -1,39 +1,36 @@
 .footer {
-    display: flex; /* Make the nav bar a flex container */
-    justify-content: space-between; /* Align items to the left and right */
-    align-items: center; /* Vertically center elements */
-    background-color: #f89454; /* Nice hue of orange */
-    padding: 10px;
-  }
-  
-  .footer ul {
-    list-style: none; /* Remove default bullet points */
-    margin: 0; /* Remove default margin */
-  }
-  
-  .footer li {
-    display: inline-block; /* Ensure elements are displayed horizontally */
-    margin-left: 15px; /* Add spacing between elements */
-  }
-  
-  .footer li a {
-    color: #fff; /* Cream font color */
-    text-decoration: none;
-    padding: 5px 10px;
-  }
-  
-  .footer li a:hover {
-    background-color: #f78547; /* Slightly darker orange on hover */
-  }
-  
-  .footer li button {
-    background-color: transparent; /* Transparent background for button */
-    border: none; /* Remove default button border */
-    color: #fff; /* Cream font color */
-    cursor: pointer;
-    padding: 5px 10px;
-  }
-  
-  .footer li button:hover {
-    background-color: #f78547; /* Same hover effect as links */
-  }
+  background: radial-gradient(circle at center, blue, red); /* Match nav bar background */
+  padding: 10px; /* Maintain same padding */
+  display: flex; /* Keep flex layout */
+  justify-content: center; /* Center elements horizontally (adjust as needed) */
+  align-items: center; /* Maintain vertical centering */
+}
+
+.footer ul {
+  list-style: none; /* Keep no bullet points */
+  margin: 0; /* Keep no margin */
+}
+
+.footer li {
+  display: inline-block; /* Maintain horizontal display */
+  margin: 0; /* Remove individual margin for centering */
+}
+
+.footer li a,
+.footer li button { /* Target both links and buttons */
+  color: pink; /* Match nav bar link color */
+  text-decoration: none; /* Keep no underline */
+  padding: 10px 15px; /* Match nav bar link padding */
+  font-weight: bold; /* Optional: Add boldness for emphasis (matches nav bar) */
+  transition: color 0.2s ease-in-out; /* Maintain smooth hover transition */
+}
+
+.footer li a:hover,
+.footer li button:hover { /* Target both links and buttons on hover */
+  color: red; /* Match nav bar link hover color */
+}
+
+.footer li button { /* Optional: Remove default button styling */
+  background-color: transparent;
+  border: none;
+}

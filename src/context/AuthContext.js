@@ -16,8 +16,9 @@ const AuthProvider = ({ children }) => {
 
   const handleLogin = async (userData) => {
     setIsLoggedIn(true);
-    setUsername(userData.username);
+    setUsername(userData.email);
     setUserData(userData);
+    console.log(userData);
 
     // Simulate asynchronous operation (replace with your actual logic)
     return new Promise((resolve) => setTimeout(() => resolve(), 1000));

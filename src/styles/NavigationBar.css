@@ -1,40 +1,37 @@
+/* Navigation bar styling */
 .navigation-bar {
-    display: flex; /* Make the nav bar a flex container */
-    justify-content: space-between; /* Align items to the left and right */
-    align-items: center; /* Vertically center elements */
-    background-color: #f89454; /* Nice hue of orange */
-    padding: 10px;
-  }
-  
-  .navigation-bar ul {
-    list-style: none; /* Remove default bullet points */
-    margin: 0; /* Remove default margin */
-  }
-  
-  .navigation-bar li {
-    display: inline-block; /* Ensure elements are displayed horizontally */
-    margin-left: 15px; /* Add spacing between elements */
-  }
-  
-  .navigation-bar li a {
-    color: #fff; /* Cream font color */
-    text-decoration: none;
-    padding: 5px 10px;
-  }
-  
-  .navigation-bar li a:hover {
-    background-color: #f78547; /* Slightly darker orange on hover */
-  }
-  
-  .navigation-bar li button {
-    background-color: transparent; /* Transparent background for button */
-    border: none; /* Remove default button border */
-    color: #fff; /* Cream font color */
-    cursor: pointer;
-    padding: 5px 10px;
-  }
-  
-  .navigation-bar li button:hover {
-    background-color: #f78547; /* Same hover effect as links */
-  }
-  
+  background: radial-gradient(circle at center, blue, red); /* Radial gradient background */
+  padding: 10px; /* Adjust padding as needed */
+  display: flex; /* Align links horizontally */
+  justify-content: space-around; /* Distribute links evenly */
+  list-style: none; /* Remove default list styling */
+}
+
+/* Link styling */
+.navigation-bar li {
+  display: inline-block; /* Make links inline-block for horizontal display */
+  margin: 0 10px; /* Add margin for spacing between links */
+}
+
+.navigation-bar li a {
+  color: pink; /* Pink font color */
+  text-decoration: none; /* Remove underline */
+  font-weight: bold; /* Optional: Add boldness for emphasis */
+  transition: color 0.2s ease-in-out; /* Smooth color transition on hover */
+  padding: 10px 15px; /* Add padding for spacing */
+}
+
+/* Hover effect for links */
+.navigation-bar li a:hover {
+  color: red; /* Red highlight on hover */
+}
+
+/* Logout button styling */
+.logout-button {
+  /* Remove default button styling (optional) */
+  border: none;
+  background: none;
+  padding: 10px 15px; /* Add padding for spacing */
+  cursor: pointer; /* Indicate clickable element */
+  margin: 0 10px; /* Add margin for spacing */
+}

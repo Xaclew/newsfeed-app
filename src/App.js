@@ -18,7 +18,7 @@ import {AuthProvider} from './context/AuthContext';
 export const ThemeContext = createContext();
 
 function App() {
-  
+
 const [theme, setTheme] = useState(availableThemes.light);
 
   useEffect(() => {
