@@ -14,9 +14,8 @@ function NewsFeed() {
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false); // State for modal visibility
   const [selectedArticle, setSelectedArticle] = useState(null); // State for selected article
-
-  const filterCategories = ['Technology', 'War', 'Entertainment'];
-
+  const filteredSearchParams = `fq=${selectedCategory}&q=${searchTerm}`;
+  const searchParams = `q=${searchTerm}`;
   useEffect(() => {
     const fetchInitialNews = async () => {
       setIsLoading(true);
@@ -40,21 +39,16 @@ function NewsFeed() {
   }, []);
 
   const handleSearch = async () => {
-    if (!searchTerm && !selectedCategory) {
+    if (!searchTerm) {
       return; // Prevent empty search
     }
 
     setIsLoading(true);
     try {
-      const params = new URLSearchParams();
-      if (searchTerm) {
-        params.append('q', searchTerm);
-      }
-      if (selectedCategory) {
-        params.append('fq', selectedCategory); // Use 'fq' for filter query
-      }
+      
+      console.log(selectedCategory, searchTerm);
 
-      const response = await fetch(`${BASE_API_URL}?${params.toString()}&api-key=dYPWJfcUGz7jzoqT3m4NJ73IJiZd36RQ`);
+      const response = await fetch(`${BASE_API_URL}?${(selectedCategory)?filteredSearchParams:searchParams}&api-key=dYPWJfcUGz7jzoqT3m4NJ73IJiZd36RQ`);
       if (!response.ok) {
         throw new Error('Failed to fetch search results');
       }
@@ -72,11 +66,10 @@ function NewsFeed() {
     setSearchTerm(event.target.value);
   };
 
-  const handleFilterChange = (selectedCategory) => {
-    setSelectedCategory(selectedCategory);
-    handleSearch();
+  const handleFilterChange = (newCategory) => {
+    setSelectedCategory(newCategory);
   };
-
+  
   const handleOpenModal = (article) => {
     setSelectedArticle(article);
     setShowModal(true); // Open the modal
@@ -98,10 +91,7 @@ function NewsFeed() {
           onChange={handleInputChange}
         />
         <button onClick={handleSearch}>Search</button>
-        <FilterBar
-          filterCategories={filterCategories}
-          onFilterChange={handleFilterChange}
-        />
+        <FilterBar selectedCategory={selectedCategory} onFilterChange={handleFilterChange} />
       </div>
       {isLoading ? (
         <p>Loading news...</p>

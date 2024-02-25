@@ -1,19 +1,29 @@
 import React, { useState } from 'react';
 
-const FilterBar = ({ onFilterChange }) => {
-  const [selectedCategory, setSelectedCategory] = useState('');
+const FilterBar = ({ selectedCategory, onFilterChange }) => {
+  // Use controlled component pattern for select element
+  const [dropdownValue, setDropdownValue] = useState(selectedCategory);
 
   const handleCategoryChange = (event) => {
-    setSelectedCategory(event.target.value);
-    onFilterChange(selectedCategory);
+    setDropdownValue(event.target.value);
+    onFilterChange(event.target.value); // Immediately propagate selection change to NewsFeed
   };
 
   return (
     <div className="filter-bar">
-        <button value="" onClick={handleCategoryChange}>All Categories</button>
-        <button value="Technology" onClick={handleCategoryChange}>Technology</button>
-        <button value="War" onClick={handleCategoryChange}>War</button>
-        <button value="Entertainment" onClick={handleCategoryChange}>Entertainment</button>
+      {/* Clear label for accessibility */}
+      <label htmlFor="category-filter">Filter by Category:</label>
+      <select
+        id="category-filter"
+        value={dropdownValue} // Ensure select reflects current state
+        onChange={handleCategoryChange}
+      >
+        <option value="">All Categories</option>
+        <option value="technology">Technology</option>
+        <option value="war">War</option>
+        <option value="entertainment">Entertainment</option>
+        {/* Add more options as needed */}
+      </select>
     </div>
   );
 };
