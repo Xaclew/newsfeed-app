@@ -3,6 +3,8 @@ import ArticleCard from './ArticleCard';
 import FilterBar from './FilterBar';
 import ArticleModal from './ArticleModal';
 import '../styles/NewsFeed.css';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 const BASE_API_URL = 'https://api.nytimes.com/svc/search/v2/articlesearch.json';
 
@@ -16,6 +18,11 @@ function NewsFeed() {
   const [selectedArticle, setSelectedArticle] = useState(null); // State for selected article
   const filteredSearchParams = `fq=${selectedCategory}&q=${searchTerm}`;
   const searchParams = `q=${searchTerm}`;
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+
   useEffect(() => {
     const fetchInitialNews = async () => {
       setIsLoading(true);
@@ -101,28 +108,39 @@ function NewsFeed() {
         news.length > 0 ? (
           <div className="article-grid" >
             {news.map((article) => (
-              <ArticleCard key={article.id} article={article} />
+              <ArticleCard key={article.id} article={article} handleShow={handleShow} />
             ))}
           </div>
         ) : (
           <p>No news found.</p>
         )
       )}
-      {showModal && selectedArticle && (
-        <ArticleModal article={selectedArticle} onClose={handleCloseModal}>
-          <div className="modal-content">
-            <h2>{selectedArticle.headline.main}</h2>
-            <img src={`http://www.nytimes.com/${selectedArticle.multimedia[0].url}`} alt={selectedArticle.headline.main} />
-            <p>{selectedArticle.snippet}</p>
-            <a href={selectedArticle.url} target="_blank" rel="noreferrer">Read full article</a>
-          </div>
-          <button className="close-button" onClick={handleCloseModal}>
-            &times;
-          </button>
-        </ArticleModal>
-      )}
+    <Modal
+      show={show}
+      onHide={handleClose}
+      backdrop="static"
+      keyboard={false}
+    >
+      <Modal.Header closeButton>
+        <Modal.Title>Modal title</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        I will not close if you click outside me. Do not even try to press
+        escape key.
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          Close
+        </Button>
+        <Button variant="primary">Understood</Button>
+      </Modal.Footer>
+    </Modal>
     </div>
   );
 }
 
 export default NewsFeed;
+
+
+
+

@@ -11,6 +11,7 @@ import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 import './styles/App.css';
 import {AuthProvider} from './context/AuthContext';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
