@@ -28,3 +28,12 @@
   font-size: 20px;
   cursor: pointer;
 }
+
+.nfModal .error {
+  width: 100%;
+}
+
+.article-card {
+  border: solid red 2px;
+  background-color: lightblue;
+}

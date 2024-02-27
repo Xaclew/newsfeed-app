@@ -6,6 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { ArticleContext } from '../context/ArticleContext';
 import defaultImage from '../default.jpg';
+import Image from 'react-bootstrap/Image';
 
 const BASE_API_URL = 'https://api.nytimes.com/svc/search/v2/articlesearch.json';
 
@@ -113,6 +114,7 @@ function NewsFeed() {
   onHide={handleClose}
   backdrop="static"
   keyboard={false}
+  className='nfModal'
 >
   {articleData ? (
     <>
@@ -124,9 +126,11 @@ function NewsFeed() {
         <br />
         {articleData.byline.original}
         <br />
-        <img
+        <Image
+          className='modal-image'
           src={`http://www.nytimes.com/${articleData.multimedia?.[0]?.url}`}
           alt="article-main" onError={imageOnError}
+          fluid
         />
         {articleData.lead_paragraph}
       </Modal.Body>

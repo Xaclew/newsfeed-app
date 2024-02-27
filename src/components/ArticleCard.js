@@ -3,6 +3,9 @@ import defaultImage from '../default.jpg'; // Replace with your actual path
 import Button from 'react-bootstrap/Button';
 import { useContext } from 'react';
 import { ArticleContext } from '../context/ArticleContext';
+import Image from 'react-bootstrap/Image';
+
+
 
 function ArticleCard({ article, handleShow }) {
 
@@ -22,7 +25,7 @@ function ArticleCard({ article, handleShow }) {
     <div className="article-card">
       <h2>{article?.title}</h2>
       <p>{article?.snippet}</p>
-      <img src={`http://www.nytimes.com/${imageUrl}`} alt={article.headline.main} onError={imageOnError}/>
+      <Image src={`http://www.nytimes.com/${imageUrl}`} alt={article.headline.main} onError={imageOnError} fluid/>
       <Button variant="primary" onClick={handleClick}>
       Read More
     </Button>
