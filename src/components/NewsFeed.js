@@ -5,6 +5,7 @@ import '../styles/NewsFeed.css';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { ArticleContext } from '../context/ArticleContext';
+import defaultImage from '../default.jpg';
 
 const BASE_API_URL = 'https://api.nytimes.com/svc/search/v2/articlesearch.json';
 
@@ -20,6 +21,10 @@ function NewsFeed() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const {articleData} = useContext(ArticleContext);
+  const imageOnError = (event) => {
+    event.currentTarget.src = defaultImage;
+    event.currentTarget.className = "error";
+  }
 
 
   useEffect(() => {
@@ -103,22 +108,27 @@ function NewsFeed() {
           <p>No news found.</p>
         )
       )}
-    <Modal
-      show={show}
-      onHide={handleClose}
-      backdrop="static"
-      keyboard={false}
-    >
+<Modal
+  show={show}
+  onHide={handleClose}
+  backdrop="static"
+  keyboard={false}
+>
+  {articleData ? (
+    <>
       <Modal.Header closeButton>
         <Modal.Title>{articleData.title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-{articleData.headline.main}
-<br/>
-{articleData.byline.original}
-<br/>
-<img src={`http://www.nytimes.com/${articleData.multimedia?.[0]?.url}`} alt="article-main"/>
-{articleData.lead_paragraph}
+        {articleData.headline.main}
+        <br />
+        {articleData.byline.original}
+        <br />
+        <img
+          src={`http://www.nytimes.com/${articleData.multimedia?.[0]?.url}`}
+          alt="article-main" onError={imageOnError}
+        />
+        {articleData.lead_paragraph}
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
@@ -126,7 +136,11 @@ function NewsFeed() {
         </Button>
         <Button variant="primary">Understood</Button>
       </Modal.Footer>
-    </Modal>
+    </>
+  ) : (
+    <div className="error-message">Error: Article data is missing</div>
+  )}
+</Modal>
     </div>
   );
 }
