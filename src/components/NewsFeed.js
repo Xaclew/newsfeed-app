@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import ArticleCard from './ArticleCard';
 import FilterBar from './FilterBar';
-import ArticleModal from './ArticleModal';
 import '../styles/NewsFeed.css';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import { ArticleContext } from '../context/ArticleContext';
 
 const BASE_API_URL = 'https://api.nytimes.com/svc/search/v2/articlesearch.json';
 
@@ -14,13 +14,12 @@ function NewsFeed() {
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [showModal, setShowModal] = useState(false); // State for modal visibility
-  const [selectedArticle, setSelectedArticle] = useState(null); // State for selected article
   const filteredSearchParams = `fq=${selectedCategory}&q=${searchTerm}`;
   const searchParams = `q=${searchTerm}`;
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const {articleData} = useContext(ArticleContext);
 
 
   useEffect(() => {
@@ -47,13 +46,12 @@ function NewsFeed() {
 
   const handleSearch = async () => {
     if (!searchTerm) {
-      return; // Prevent empty search
+      return;
     }
 
     setIsLoading(true);
     try {
       
-      console.log(selectedCategory, searchTerm);
 
       const response = await fetch(`${BASE_API_URL}?${(selectedCategory)?filteredSearchParams:searchParams}&api-key=dYPWJfcUGz7jzoqT3m4NJ73IJiZd36RQ`);
       if (!response.ok) {
@@ -61,7 +59,6 @@ function NewsFeed() {
       }
       const data = await response.json();
       setNews(data.response.docs);
-      console.log(news);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -77,15 +74,6 @@ function NewsFeed() {
     setSelectedCategory(newCategory);
   };
   
-  const handleOpenModal = (article) => {
-    setSelectedArticle(article);
-    setShowModal(true); // Open the modal
-  };
-
-  const handleCloseModal = () => {
-    setSelectedArticle(null);
-    setShowModal(false); // Close the modal
-  };
 
   return (
     <div className="news-feed">
@@ -122,11 +110,15 @@ function NewsFeed() {
       keyboard={false}
     >
       <Modal.Header closeButton>
-        <Modal.Title>Modal title</Modal.Title>
+        <Modal.Title>{articleData.title}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        I will not close if you click outside me. Do not even try to press
-        escape key.
+{articleData.headline.main}
+<br/>
+{articleData.byline.original}
+<br/>
+<img src={`http://www.nytimes.com/${articleData.multimedia?.[0]?.url}`} alt="article-main"/>
+{articleData.lead_paragraph}
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>

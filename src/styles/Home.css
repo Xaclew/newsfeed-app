@@ -3,8 +3,8 @@
     background-size: cover;
     background-position: center;
     height: 100vh;
-    color: pink; /* Match navbar and footer */
-  }
+    color: pink;
+}
   
   .header {
     display: flex;
@@ -21,6 +21,6 @@
   }
   
   .header button:hover {
-    color: #f58271; /* Slightly darker pink on hover */
+    color: #f58271;
   }
   

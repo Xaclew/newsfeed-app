@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ref, set } from 'firebase/database';
-import { database } from '../firebaseConfig'; // Assuming your config file is named firebaseConfig.js
-import bcryptjs from 'bcryptjs'; // Assuming bcryptjs is installed
+import { database } from '../firebaseConfig';
+import bcryptjs from 'bcryptjs';
 
 function Registration() {
   const [email, setEmail] = useState('');
@@ -12,27 +12,24 @@ function Registration() {
     e.preventDefault();
 
     try {
-      // Sanitize email address (optional)
-      const sanitizedEmail = email.replace(/\./g, ''); // Replace periods with another character
+      const sanitizedEmail = email.replace(/\./g, '');
 
       const userRef = ref(database, `users/${sanitizedEmail}`);
 
-      // Generate secure hash for password
-      const saltRounds = 10; // Adjust as needed
+     
+      const saltRounds = 10;
       const hashedPassword = await bcryptjs.hash(password, saltRounds);
 
       await set(userRef, {
         email,
         hashedPassword,
       });
-
-      // Handle successful registration (e.g., redirect to login page)
       console.log('User registered:', email);
       setEmail('');
       setPassword('');
     } catch (error) {
       console.error('Registration error:', error.message);
-      setError(error.message); // Display error message to user
+      setError(error.message);
     }
   };
 

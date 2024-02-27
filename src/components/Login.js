@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ref, get, child } from 'firebase/database';
-import { database } from '../firebaseConfig'; // Assuming correct filename
+import { ref, get } from 'firebase/database';
+import { database } from '../firebaseConfig';
 import bcryptjs from 'bcryptjs';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
@@ -17,8 +17,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      // Sanitize email address (optional)
-      const sanitizedEmail = email.replace(/\./g, ''); // Replace periods with another character
+      const sanitizedEmail = email.replace(/\./g, '');
 
       const userRef = ref(database, `users/${sanitizedEmail}`);
       const userSnapshot = await get(userRef);
@@ -35,8 +34,8 @@ function Login() {
 
       if (passwordMatch) {
         console.log('User logged in:', email);
-        await handleLogin(userData); // Call context function
-        navigate('/dashboard'); // Redirect to dashboard after successful login
+        await handleLogin(userData);
+        navigate('/');
       } else {
         setError('Invalid email or password.');
       }

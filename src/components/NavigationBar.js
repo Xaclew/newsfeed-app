@@ -5,12 +5,12 @@ import { AuthContext } from '../context/AuthContext';
 import '../styles/NavigationBar.css';
 
 function NavigationBar() {
-  const { isLoggedIn, username, handleLogout } = useContext(AuthContext);
+  const { isLoggedIn, handleLogout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogoutClick = () => {
     handleLogout();
-    navigate('/'); // Redirect to home page after logout
+    navigate('/');
   };
 
   return (

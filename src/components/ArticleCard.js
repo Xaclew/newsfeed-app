@@ -1,10 +1,17 @@
 import React from 'react';
 import defaultImage from '../default.jpg'; // Replace with your actual path
 import Button from 'react-bootstrap/Button';
+import { useContext } from 'react';
+import { ArticleContext } from '../context/ArticleContext';
 
 function ArticleCard({ article, handleShow }) {
-  // ... other code remains the same ...
 
+  const {selectArticle} = useContext(ArticleContext);
+  // ... other code remains the same ...
+  function handleClick() {
+    selectArticle(article);
+    handleShow();
+  }
   const imageUrl = article.multimedia?.[0]?.url; // Use default image if no article image found
   const imageOnError = (event) => {
     event.currentTarget.src = defaultImage;
@@ -16,7 +23,7 @@ function ArticleCard({ article, handleShow }) {
       <h2>{article?.title}</h2>
       <p>{article?.snippet}</p>
       <img src={`http://www.nytimes.com/${imageUrl}`} alt={article.headline.main} onError={imageOnError}/>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary" onClick={handleClick}>
       Read More
     </Button>
     </div>

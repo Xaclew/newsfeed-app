@@ -1,36 +1,36 @@
 .footer {
-  background: radial-gradient(circle at center, blue, red); /* Match nav bar background */
-  padding: 10px; /* Maintain same padding */
-  display: flex; /* Keep flex layout */
-  justify-content: center; /* Center elements horizontally (adjust as needed) */
-  align-items: center; /* Maintain vertical centering */
+  background: radial-gradient(circle at center, blue, red);
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .footer ul {
-  list-style: none; /* Keep no bullet points */
-  margin: 0; /* Keep no margin */
+  list-style: none;
+  margin: 0;
 }
 
 .footer li {
-  display: inline-block; /* Maintain horizontal display */
-  margin: 0; /* Remove individual margin for centering */
+  display: inline-block;
+  margin: 0;
 }
 
 .footer li a,
-.footer li button { /* Target both links and buttons */
-  color: pink; /* Match nav bar link color */
-  text-decoration: none; /* Keep no underline */
-  padding: 10px 15px; /* Match nav bar link padding */
-  font-weight: bold; /* Optional: Add boldness for emphasis (matches nav bar) */
-  transition: color 0.2s ease-in-out; /* Maintain smooth hover transition */
+.footer li button {
+  color: pink;
+  text-decoration: none;
+  padding: 10px 15px;
+  font-weight: bold;
+  transition: color 0.2s ease-in-out;
 }
 
 .footer li a:hover,
-.footer li button:hover { /* Target both links and buttons on hover */
-  color: red; /* Match nav bar link hover color */
+.footer li button:hover { 
+  color: red;
 }
 
-.footer li button { /* Optional: Remove default button styling */
+.footer li button {
   background-color: transparent;
   border: none;
 }

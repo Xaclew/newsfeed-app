@@ -6,16 +6,15 @@ import Home from './components/Home';
 import About from './components/About';
 import Login from './components/Login';
 import Registration from './components/Registration';
-import Dashboard from './components/Dashboard';
 import NavigationBar from './components/NavigationBar';
 import Footer from './components/Footer';
 import './styles/App.css';
 import {AuthProvider} from './context/AuthContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ArticleProvider } from './context/ArticleContext';
 
 
 
-// Theme context
 export const ThemeContext = createContext();
 
 function App() {
@@ -23,7 +22,7 @@ function App() {
 const [theme, setTheme] = useState(availableThemes.light);
 
   useEffect(() => {
-    // Load user preferences or default theme here
+    
     const preferredTheme = localStorage.getItem('theme');
     if (preferredTheme) {
       setTheme(JSON.parse(preferredTheme));
@@ -38,18 +37,20 @@ const [theme, setTheme] = useState(availableThemes.light);
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <AuthProvider>
+        <ArticleProvider>
       <BrowserRouter>
         <NavigationBar/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/news" element={<NewsFeed />} />
+          
+            <Route path="/news" element={<NewsFeed />} />
+          
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Registration />} />
-          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
         <Footer/>
-      </BrowserRouter>
+      </BrowserRouter></ArticleProvider>
       </AuthProvider>
     </ThemeContext.Provider>
   );

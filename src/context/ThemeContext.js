@@ -4,16 +4,14 @@ const themes = {
   light: {
     background: '#fff',
     color: '#000',
-    // Add more light theme styles here
   },
   dark: {
     background: '#222',
     color: '#fff',
-    // Add more dark theme styles here
   },
 };
 
-const defaultTheme = themes.light; // Set default theme
+const defaultTheme = themes.light;
 
 export const ThemeContext = createContext({
   theme: defaultTheme,
@@ -35,4 +33,4 @@ export function ThemeProvider({ children }) {
   );
 }
 
-export const availableThemes = themes; // Expose themes object
+export const availableThemes = themes;

@@ -1,37 +1,35 @@
-/* Navigation bar styling */
+
 .navigation-bar {
-  background: radial-gradient(circle at center, blue, red); /* Radial gradient background */
-  padding: 10px; /* Adjust padding as needed */
-  display: flex; /* Align links horizontally */
-  justify-content: space-around; /* Distribute links evenly */
-  list-style: none; /* Remove default list styling */
+  background: radial-gradient(circle at center, blue, red);
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
 }
 
-/* Link styling */
 .navigation-bar li {
-  display: inline-block; /* Make links inline-block for horizontal display */
-  margin: 0 10px; /* Add margin for spacing between links */
+  display: inline-block;
+  margin: 0 10px;
 }
 
 .navigation-bar li a {
-  color: pink; /* Pink font color */
-  text-decoration: none; /* Remove underline */
-  font-weight: bold; /* Optional: Add boldness for emphasis */
-  transition: color 0.2s ease-in-out; /* Smooth color transition on hover */
-  padding: 10px 15px; /* Add padding for spacing */
+  color: pink;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s ease-in-out;
+  padding: 10px 15px;
 }
 
-/* Hover effect for links */
+
 .navigation-bar li a:hover {
-  color: red; /* Red highlight on hover */
+  color: red;
 }
 
-/* Logout button styling */
+
 .logout-button {
-  /* Remove default button styling (optional) */
   border: none;
   background: none;
-  padding: 10px 15px; /* Add padding for spacing */
-  cursor: pointer; /* Indicate clickable element */
-  margin: 0 10px; /* Add margin for spacing */
+  padding: 10px 15px;
+  cursor: pointer;
+  margin: 0 10px;
 }

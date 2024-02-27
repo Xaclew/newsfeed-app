@@ -18,9 +18,6 @@ const AuthProvider = ({ children }) => {
     setIsLoggedIn(true);
     setUsername(userData.email);
     setUserData(userData);
-    console.log(userData);
-
-    // Simulate asynchronous operation (replace with your actual logic)
     return new Promise((resolve) => setTimeout(() => resolve(), 1000));
   };
 
@@ -31,7 +28,6 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    // Check for initial login state (optional)
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       const parsedUser = JSON.parse(storedUser);
